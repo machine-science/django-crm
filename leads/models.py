@@ -33,6 +33,9 @@ class Lead(models.Model):
     # profile_picture = models.ImageField(blank=True, null=True)
     # special_file = models.FileField(blank=True, null=True)
 
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
 
 class Agent(models.Model):
     # here foreign key allows to have many Agents for one User
@@ -47,3 +50,6 @@ class Agent(models.Model):
 
     # first_name = models.CharField(max_length=50)
     # last_name = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return self.user.email
