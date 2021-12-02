@@ -1,36 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% block content%}
 
-    <style>
-        .lead {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 6px;
-            padding-right: 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-    </style>
-</head>
 
-<body>
-    <a href="{% url 'leads:lead_create' %}"> Create a new lead </a>
-    <hr>
-    <h1>This is all of our leads</h1>
+<br>
 
-    {% for lead in leads %}
-    <div class="lead">
-        <a href="{{lead.id}}">{{ lead.first_name }} {{ lead.last_name }} {{ lead.age }} </a>
+<div class="d-flex">
+    <div>
+        <h1>These are all of our leads</h1>
     </div>
-    {% endfor %}
+    <div class="push hover:text-blue-500">
+        <a href="{% url 'leads:lead_create' %}" role="button" class="btn btn-light">Create a new lead</a>
+    </div>
 
-</body>
+</div>
+<hr>
 
-</html>
+
+
+<div class="lead">
+    <div class="row">
+        {% for lead in leads %}
+
+        <div class="col-lg-4">
+            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                    dy=".3em">140x140</text>
+            </svg>
+
+            <h2>{{ lead.first_name }} {{ lead.last_name }}</h2>
+            <p>Some representative placeholder content for the three columns of text below the carousel. This is the
+                first column.</p>
+            <p><a class="btn btn-secondary" href="{{lead.id}}">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        {% endfor %}
+    </div><!-- /.row -->
+</div>
+
+{% endblock %}

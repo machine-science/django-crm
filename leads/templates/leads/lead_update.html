@@ -1,36 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% block content%}
+<a href="{% url 'leads:lead_details' lead.pk %}">Go back to {{ lead.first_name}} {{ lead.last_name}}
+    deatails</a>
+<hr>
+<h1>Update lead: {{ lead.first_name}} {{ lead.last_name }}</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
 
-    <style>
-        .lead {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 6px;
-            padding-right: 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-    </style>
-</head>
+</form>
 
-<body>
-    <a href="{% url 'leads:lead_details' lead.pk %}">Go back to {{ lead.first_name}} {{ lead.last_name}}
-        deatails</a>
-    <hr>
-    <h1>Update lead: {{ lead.first_name}} {{ lead.last_name }}</h1>
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
 
-    </form>
-</body>
-
-</html>
+{% endblock %}
