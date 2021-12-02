@@ -128,3 +128,6 @@ STATIC_ROOT = "static_root"
 
 # AUTH_USER_MODEL = 'name_of_the_app.ModelName'
 AUTH_USER_MODEL = 'leads.User'
+
+# Email backend
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
