@@ -7,9 +7,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a class="nav-link" href="{% url 'leads:lead_list' %}">Leads</a>
-                <a class="nav-link" href="#">Signup</a>
-                <a class="nav-link btn-secondary" href="#" tabindex="-1" aria-disabled="true">Login</a>
+                <a class="nav-link nav-item active" style="margin-right: 5px;"
+                    href="{% url 'leads:lead_list' %}">Leads</a>
+                {% if request.user.is_authenticated %}
+                <span style="color: white; margin-top: 0.5rem; margin-right: 5px;"> Logged in as:
+                    {{request.user.username}} </span>
+                <a href="{% url 'logout' %}" style="margin-top: 0.5rem;"><span
+                        style="color: white; margin-top: 5px; margin-left: 5px;">
+                        Logout </span></a>
+                {% else %}
+                <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+                <a class="nav-link btn-secondary" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Login</a>
+                {% endif %}
             </div>
         </div>
     </div>
