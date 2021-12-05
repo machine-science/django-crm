@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.deletion import CASCADE
 
 # user = get_user_model()
 
@@ -8,6 +9,22 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     pass
+
+
+class UserProfile(models.Model):
+    '''
+    We need to link leads and agents models.
+    This model will allow us to do the same
+    These models need to get attached to specific userprofile.
+    This userprofile is linked to user in the Agent model. Then each
+    agent link back to it's parent userprofile.
+    This is done to show / view relavant information to that particular logged in 
+    lead/agent  
+    '''
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.user.username
 
 
 class Lead(models.Model):
@@ -44,6 +61,7 @@ class Agent(models.Model):
     # Hence we will use one to one mapping
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     # We do not need first and last name sice we are inheriting it
     # from AbstractUser
