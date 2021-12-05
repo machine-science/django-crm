@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
 from django.db.models.deletion import CASCADE
 
 # user = get_user_model()
@@ -71,3 +72,24 @@ class Agent(models.Model):
 
     def __str__(self) -> str:
         return self.user.email
+
+
+def post_user_created_signal(sender, instance, created, **kwargs):
+    """
+    This function will be called when post_save event is received.
+    The event that gets sent to this function, gives us bunch of parameters that we can work with.
+
+    :param sender: is the actual sender
+    :param instance: is the actual model that was saved (for eg. User)
+    :param created: Which tells us whetehr or not the model was created
+
+    """
+    # print(instance, created)
+    if created:
+        UserProfile.objects.create(user=instance)
+
+
+post_save.connect(post_user_created_signal, sender=User)
+# The way we do that is by taking the signal, and signal has method called
+# connect. The connect takes in the name of the function you want to call and
+# need to specify sender, the sender is the exact model that is sending the event.
