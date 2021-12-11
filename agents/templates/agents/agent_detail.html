@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<br>
+<a href="{% url 'agents:agent_list' %}">
+    <button class="btn btn-secondary">
+        &laquo; Go back to agents
+    </button>
+</a>
+<hr>
+
+<div class="container">
+    <h1>Following are the details of agent {{ agent.user.username }}</h1>
+
+    <hr>
+
+    <div class="row gutters-sm">
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-left">
+                        <img src="https://www.abanahomes.com/wp-content/uploads/2021/02/champa-plumeria.jpg" alt="Admin"
+                            class="rounded-circle" width="150">
+                        <div class="mt-3">
+                            <h4>{{ agent.user.username}}</h4>
+                            <p class="text-secondary mb-1">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Quo veniam magni quidem ullam, praesentium omnis necessitatibus perferendis, commodi ut
+                                deserunt nostrum veritatis qui assumenda.
+                                Dicta id optio harum dolores exercitationem?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">{{ agent.user.username }}</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> fip@jukmuh.al</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> (239) 816-9029</div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> Mumbai, India</div>
+                    </div>
+                    <hr>
+                    {% comment %} <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Agent</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> {{lead.agent}}</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Age</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary"> {{lead.age}} </div>
+                    </div> {% endcomment %}
+                    {% comment %} <hr> {% endcomment %}
+                    <div class="row">
+                        <div style="margin-right: 5px;">
+                            <a href="{% url 'agents:agent_update' agent.pk %}"><button
+                                    class="btn btn-outline-primary">Update</button></a>
+                        </div>
+                        <a href="{% url 'agents:agent_delete' agent.pk %}"> <button
+                                class="btn btn-outline-danger">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
